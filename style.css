@@ -353,13 +353,14 @@ h2 {
 
 .form-group {
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #333;
+    color: white;
 }
 
 .form-group input,
@@ -376,8 +377,8 @@ h2 {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: white;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
 }
 
 .form-group textarea {
@@ -386,8 +387,8 @@ h2 {
 }
 
 .submit-btn {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
+    background: white;
+    color: #667eea;
     padding: 14px 40px;
     border: none;
     border-radius: 30px;
@@ -399,7 +400,7 @@ h2 {
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .submit-btn:disabled {
@@ -408,7 +409,7 @@ h2 {
 }
 
 .error-message {
-    color: #d32f2f;
+    color: #ffcccc;
     font-size: 0.9em;
     margin-top: 5px;
     display: none;
