@@ -1,3 +1,8 @@
+/* --- Matrix Digital Rain Theme --- */
+
+/* פונטים מומלצים למראה טרמינל (טעון מה-HTML) */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Courier+Prime&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,111 +10,90 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* רקע שחור מוחלט כדי שהירוק יבלוט */
+    background-color: #000;
+    /* ירוק מטריקס קלאסי */
+    color: #00ff41;
+    font-family: 'Fira Code', 'Courier Prime', monospace;
     line-height: 1.6;
-    color: #333;
-    background: #f8f9fa;
+    overflow-x: hidden;
+}
+
+/* --- אנימציות --- */
+
+/* אפקט גליץ' עדין לכותרות */
+@keyframes glitch {
+    0% { text-shadow: 0.5px 0 0 #00ff41, -0.5px 0 0 #fe3a7f; }
+    100% { text-shadow: -0.5px 0 0 #00ff41, 0.5px 0 0 #fe3a7f; }
 }
 
 @keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(20px);
-    }
-}
+/* --- הדר (Header) --- */
 
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    color: white;
+    /* הסרנו את הגרדיאנט הסגול, עכשיו זה שחור עם אפקט */
+    background: black;
+    color: #00ff41;
     padding: 120px 20px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    border-bottom: 2px solid #00ff41;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
 }
 
-header::before {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    top: -100px;
-    right: -100px;
-    animation: float 6s ease-in-out infinite;
-}
-
-header::after {
-    content: '';
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    bottom: -50px;
-    left: -50px;
-    animation: float 8s ease-in-out infinite reverse;
-}
+/* הסרנו את העיגולים הצפים המודרניים */
+header::before, header::after { content: none; }
 
 header h1 {
     font-size: 4em;
     margin-bottom: 15px;
-    animation: fadeInDown 1s ease-out;
+    animation: fadeInDown 1s ease-out, glitch 0.1s blur infinite;
     font-weight: 700;
     letter-spacing: -1px;
     position: relative;
     z-index: 1;
+    text-transform: uppercase;
 }
 
 header .subtitle {
     font-size: 1.5em;
-    opacity: 0.95;
+    color: #fff; /* לבן כדי שיבלוט על הירוק */
+    text-shadow: 0 0 5px #00ff41;
     animation: fadeInUp 1s ease-out 0.2s both;
     position: relative;
     z-index: 1;
+    font-weight: bold;
 }
 
 header .tagline {
     font-size: 1.1em;
     margin-top: 15px;
-    opacity: 0.85;
+    color: #008f11; /* ירוק כהה יותר */
     animation: fadeInUp 1s ease-out 0.4s both;
     position: relative;
     z-index: 1;
 }
 
+/* --- ניווט (Nav) --- */
+
 nav {
-    background: rgba(51, 51, 51, 0.95);
+    background: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(10px);
     padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #00ff41;
 }
 
 nav ul {
@@ -121,66 +105,59 @@ nav ul {
 }
 
 nav a {
-    color: white;
+    color: #00ff41;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
-    padding: 5px 0;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-size: 0.9em;
 }
 
-nav a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    transition: width 0.3s ease;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-nav a.active::after {
-    width: 100%;
-}
-
+/* אפקט Hover של טרמינל */
 nav a:hover {
-    color: #667eea;
+    background: #00ff41;
+    color: #000;
+    box-shadow: 0 0 20px #00ff41;
 }
+
+/* הסרנו את הקו התחתון המודרני */
+nav a::after { content: none; }
+
+/* --- סקשנים (Sections) --- */
 
 section {
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 60px 20px;
     animation: fadeInUp 1s ease-out;
+    background: rgba(0, 15, 0, 0.7); /* רקע ירקרק כהה מאוד */
+    border: 1px solid #003b00;
 }
 
 h2 {
     font-size: 2.5em;
     margin-bottom: 30px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    border-bottom: 3px solid;
-    border-image: linear-gradient(90deg, #667eea, #764ba2) 1;
+    color: #fff;
+    text-shadow: 0 0 10px #00ff41;
+    border-bottom: 2px solid #00ff41;
     padding-bottom: 15px;
     font-weight: 700;
+    text-transform: uppercase;
 }
 
 .about-content {
     font-size: 1.15em;
     line-height: 1.9;
-    color: #555;
+    color: #00ff41;
 }
 
 .about-content p {
     margin-bottom: 20px;
 }
+
+/* --- גריד מיומנויות (Skills) --- */
 
 .skills-grid {
     display: grid;
@@ -189,102 +166,85 @@ h2 {
     margin-top: 30px;
 }
 
+/* כרטיסיות מיומנויות - Terminal Window Style */
 .skill-card {
-    background: white;
+    background: #000;
     padding: 30px;
-    border-radius: 12px;
-    border-left: 5px solid;
-    border-image: linear-gradient(180deg, #667eea, #764ba2) 1;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 0; /* מטריקס זה חד, לא עגול */
+    border: 1px solid #00ff41;
+    transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
 }
 
-.skill-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
-    border-radius: 12px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+/* הסרנו את האפקט המודרני */
+.skill-card::before { content: none; }
 
 .skill-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
-}
-
-.skill-card:hover::before {
-    opacity: 1;
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #00ff41;
+    background: rgba(0, 255, 65, 0.05);
 }
 
 .skill-card h3 {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #fff;
+    text-shadow: 0 0 5px #00ff41;
     margin-bottom: 15px;
     font-weight: 700;
-    position: relative;
-    z-index: 1;
+    text-transform: uppercase;
+    border-bottom: 1px solid #00ff41;
+    padding-bottom: 5px;
 }
 
 .skill-card ul {
     list-style: none;
     padding: 0;
-    position: relative;
-    z-index: 1;
 }
 
 .skill-card li {
     margin: 8px 0;
-    color: #666;
+    color: #00ff41;
     padding-left: 20px;
     position: relative;
 }
 
+/* החלפנו את ה-✓ בסימן טרמינל */
 .skill-card li::before {
-    content: '✓';
+    content: '>_';
     position: absolute;
     left: 0;
-    color: #667eea;
+    color: #00ff41;
     font-weight: bold;
 }
 
+/* --- כרטיסיות פרויקטים (Projects) --- */
+
 .project-card {
-    background: white;
-    border: none;
-    border-left: 5px solid;
-    border-image: linear-gradient(180deg, #667eea, #764ba2) 1;
+    background: #000;
+    border: 1px solid #008f11; /* ירוק כהה יותר כברירת מחדל */
     padding: 30px;
     margin-bottom: 25px;
-    border-radius: 12px;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border-radius: 0;
+    transition: all 0.3s ease;
 }
 
 .project-card:hover {
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    border-color: #00ff41;
+    box-shadow: 0 0 20px #00ff41;
     transform: translateX(5px);
 }
 
 .project-card h3 {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #fff;
+    text-shadow: 0 0 5px #00ff41;
     margin-bottom: 12px;
     font-weight: 700;
     font-size: 1.4em;
+    text-transform: uppercase;
 }
 
 .project-card p {
-    color: #666;
+    color: #00ff41;
     margin-bottom: 12px;
     line-height: 1.7;
 }
@@ -296,34 +256,39 @@ h2 {
     margin-top: 15px;
 }
 
+/* תגיות - Matrix Code Style */
 .tag {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    padding: 6px 16px;
-    border-radius: 25px;
-    font-size: 0.9em;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.2);
+    background: transparent;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 4px 12px;
+    border-radius: 0;
+    font-size: 0.8em;
+    font-weight: bold;
 }
 
 .tag:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    background: #00ff41;
+    color: #000;
 }
 
+/* --- יצירת קשר (Contact) --- */
+
 .contact-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* הסרנו את הגרדיאנט הסגול */
+    background: #000;
+    border: 2px solid #00ff41;
     padding: 50px 40px;
-    border-radius: 15px;
+    border-radius: 0;
     text-align: center;
-    color: white;
-    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+    color: #00ff41;
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
 }
 
 .contact-section p {
     font-size: 1.2em;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .contact-links {
@@ -336,141 +301,79 @@ h2 {
 
 .contact-links a {
     display: inline-block;
-    background: white;
-    color: #667eea;
-    padding: 14px 35px;
-    border-radius: 30px;
+    background: transparent;
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    padding: 12px 30px;
+    border-radius: 0;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .contact-links a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    background: #00ff41;
+    color: #000;
+    box-shadow: 0 0 20px #00ff41;
 }
 
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
+/* --- טפסים (Forms) --- */
 
 .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: white;
+    color: #00ff41;
+    font-family: monospace;
 }
 
 .form-group input,
 .form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-family: inherit;
-    font-size: 1em;
-    transition: border-color 0.3s ease;
+    background: #000;
+    border: 1px solid #008f11;
+    border-radius: 0;
+    color: #00ff41;
+    font-family: 'Fira Code', monospace;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: white;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
+    border-color: #00ff41;
+    box-shadow: 0 0 10px #00ff41;
 }
 
 .submit-btn {
-    background: white;
-    color: #667eea;
-    padding: 14px 40px;
+    background: #00ff41;
+    color: #000;
     border: none;
-    border-radius: 30px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1em;
+    border-radius: 0;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    box-shadow: 0 0 20px #fff;
 }
 
-.submit-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.error-message {
-    color: #ffcccc;
-    font-size: 0.9em;
-    margin-top: 5px;
-    display: none;
-}
-
-.error-message.show {
-    display: block;
-}
-
-.success-message {
-    background: #4caf50;
-    color: white;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    display: none;
-}
-
-.success-message.show {
-    display: block;
-}
+/* --- פוטר (Footer) --- */
 
 footer {
-    background: #1a1a1a;
-    color: white;
-    text-align: center;
+    background: #000;
+    color: #008f11;
+    border-top: 1px solid #00ff41;
     padding: 30px 20px;
-    margin-top: 60px;
-    font-weight: 500;
+    font-family: monospace;
 }
 
+/* --- רספונסיביות --- */
+
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2.5em;
-    }
-
-    header .subtitle {
-        font-size: 1.2em;
-    }
-
-    nav ul {
-        gap: 15px;
-    }
-
-    section {
-        padding: 40px 15px;
-    }
-
-    h2 {
-        font-size: 2em;
-    }
-
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-links {
-        flex-direction: column;
-    }
-
-    .contact-links a {
-        width: 100%;
-    }
+    header h1 { font-size: 2.5em; }
+    header .subtitle { font-size: 1.2em; }
+    nav ul { gap: 15px; }
+    section { padding: 40px 15px; }
+    h2 { font-size: 2em; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .contact-links { flex-direction: column; }
+    .contact-links a { width: 100%; }
 }
